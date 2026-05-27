@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>thaleon-agent — Your unit trust advisory copilot</title>
+<meta name="description" content="thaleon-agent is a chat-first desktop copilot for Malaysian Unit Trust Consultants — research funds, manage clients, build portfolios, and generate client-ready pitch packs." />
+<link rel="icon" href="assets/icon.png" />
+<meta property="og:title" content="thaleon-agent" />
+<meta property="og:description" content="Your unit trust advisory copilot for Malaysia." />
+<meta property="og:image" content="assets/icon.png" />
+<style>
+  :root {
+    --bg: #0b0e14;
+    --bg-soft: #11151f;
+    --card: #161b27;
+    --border: #232a38;
+    --fg: #eef2f8;
+    --muted: #9aa6b8;
+    --primary: #4f8cff;
+    --primary-hover: #6ba0ff;
+    --accent: #7c5cff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI",
+      "PingFang SC", "Hiragino Sans GB", system-ui, sans-serif;
+    background: radial-gradient(1200px 600px at 50% -10%, #1a2030 0%, var(--bg) 55%);
+    color: var(--fg);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 24px; }
+
+  header.nav {
+    display: flex; align-items: center; gap: 10px;
+    padding: 22px 0;
+  }
+  header.nav img { width: 28px; height: 28px; border-radius: 7px; }
+  header.nav .name { font-weight: 600; letter-spacing: -0.01em; }
+  header.nav .spacer { flex: 1; }
+  header.nav a {
+    color: var(--muted); text-decoration: none; font-size: 14px;
+  }
+  header.nav a:hover { color: var(--fg); }
+
+  .hero {
+    text-align: center;
+    padding: 64px 0 40px;
+  }
+  .hero .logo {
+    width: 88px; height: 88px; border-radius: 22px;
+    box-shadow: 0 12px 40px rgba(79,140,255,0.25);
+    margin: 0 auto 28px;
+    display: block;
+  }
+  .hero h1 {
+    font-size: 44px; line-height: 1.1; letter-spacing: -0.03em;
+    font-weight: 700;
+    background: linear-gradient(180deg, #ffffff, #c8d3e6);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero .tagline {
+    margin-top: 16px; font-size: 19px; color: var(--muted);
+    max-width: 560px; margin-left: auto; margin-right: auto;
+  }
+
+  .cta { margin-top: 36px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .download-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: linear-gradient(180deg, var(--primary), #3f78e8);
+    color: #fff; font-weight: 600; font-size: 16px;
+    padding: 14px 26px; border-radius: 12px;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(79,140,255,0.35);
+    transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+  }
+  .download-btn:hover { background: linear-gradient(180deg, var(--primary-hover), #4f8cff); transform: translateY(-1px); box-shadow: 0 12px 30px rgba(79,140,255,0.45); }
+  .download-btn svg { width: 18px; height: 18px; }
+  .req { font-size: 13px; color: var(--muted); }
+  .req strong { color: var(--fg); font-weight: 600; }
+
+  .arch-note {
+    margin: 40px auto 0; max-width: 620px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 16px 20px;
+    font-size: 14px; color: var(--muted);
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .arch-note .badge {
+    flex-shrink: 0; font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--accent);
+    border: 1px solid var(--accent); border-radius: 6px;
+    padding: 3px 7px; margin-top: 1px;
+  }
+  .arch-note code { background: var(--bg-soft); padding: 1px 6px; border-radius: 5px; color: var(--fg); font-size: 13px; }
+
+  section.features { padding: 64px 0 24px; }
+  section.features h2 {
+    text-align: center; font-size: 13px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--muted); font-weight: 600;
+    margin-bottom: 28px;
+  }
+  .grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+  }
+  .feature {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 20px 22px;
+  }
+  .feature h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; letter-spacing: -0.01em; }
+  .feature p { font-size: 14px; color: var(--muted); }
+
+  .install { padding: 48px 0; }
+  .install .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 24px 26px;
+  }
+  .install h2 { font-size: 18px; font-weight: 600; margin-bottom: 14px; }
+  .install ol { margin-left: 18px; color: var(--muted); font-size: 14px; }
+  .install li { margin: 6px 0; }
+  .install code { background: var(--bg-soft); padding: 1px 6px; border-radius: 5px; color: var(--fg); }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 0 48px; text-align: center;
+    color: var(--muted); font-size: 13px;
+  }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--fg); }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 34px; }
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="nav">
+      <img src="assets/logo.png" alt="thaleon" />
+      <span class="name">thaleon-agent</span>
+      <span class="spacer"></span>
+      <a href="https://github.com/itechchoice/thaleon" target="_blank" rel="noopener">GitHub</a>
+    </header>
+
+    <main class="hero">
+      <img class="logo" src="assets/logo.png" alt="thaleon-agent" />
+      <h1>Your unit trust advisory copilot</h1>
+      <p class="tagline">
+        A chat-first desktop assistant for Malaysian Unit Trust Consultants —
+        research funds, manage clients, build portfolios, and generate
+        client-ready pitch packs, all in one conversation.
+      </p>
+
+      <div class="cta">
+        <a class="download-btn"
+           href="https://github.com/itechchoice/thaleon/releases/latest/download/thaleon-agent.dmg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3v12" /><path d="m7 10 5 5 5-5" /><path d="M5 21h14" />
+          </svg>
+          Download for Mac
+        </a>
+        <span class="req">macOS 12+ · <strong>Apple Silicon (M1 or newer)</strong> · .dmg</span>
+      </div>
+
+      <div class="arch-note">
+        <span class="badge">Note</span>
+        <div>
+          This build runs on <strong>Apple Silicon</strong> Macs only (M1, M2, M3, M4…).
+          Intel-based Macs are not supported yet. Not sure which you have? Click the Apple
+          menu &rarr; <code>About This Mac</code> and look for &ldquo;Apple M&hellip;&rdquo; under Chip.
+        </div>
+      </div>
+    </main>
+
+    <section class="features">
+      <h2>What it does</h2>
+      <div class="grid">
+        <div class="feature">
+          <h3>Fund research &amp; market desk</h3>
+          <p>Look up any fund's NAV, fees, and KPIs, or ask about SC / BNM / Bursa news and FX — answered with cited, dated sources.</p>
+        </div>
+        <div class="feature">
+          <h3>Client management</h3>
+          <p>Search clients, create or edit profiles from a KYC document, and record or adjust their holdings — in plain language.</p>
+        </div>
+        <div class="feature">
+          <h3>Portfolios &amp; X-Ray</h3>
+          <p>Build investment proposals, X-Ray a client's portfolio for risk and exposure, and review retirement plans with what-ifs.</p>
+        </div>
+        <div class="feature">
+          <h3>Pitch packs</h3>
+          <p>Generate a compliant, client-ready recommendation — screened against your firm's model, guard rails, and advisor controls — and export to PDF.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="install">
+      <div class="card">
+        <h2>Installing</h2>
+        <ol>
+          <li>Download <code>thaleon-agent.dmg</code> using the button above.</li>
+          <li>Open the .dmg and drag <strong>thaleon-agent</strong> into your Applications folder.</li>
+          <li>Launch it from Applications. The app is signed and notarized by Apple, so it opens normally — no security warnings.</li>
+        </ol>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; thaleon · For licensed Malaysian Unit Trust Consultants. Informational use; not financial advice.</p>
+    </footer>
+  </div>
+</body>
+</html>
