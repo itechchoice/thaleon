@@ -109,50 +109,6 @@
   }
   .reqs strong { color: var(--fg); font-weight: 600; }
 
-  .smartscreen-help {
-    margin: 22px auto 0; max-width: 620px;
-    background: var(--bg-soft); border: 1px solid var(--border);
-    border-radius: 10px; padding: 0;
-    font-size: 13px; color: var(--muted);
-    text-align: left;
-  }
-  .smartscreen-help summary {
-    cursor: pointer;
-    padding: 10px 16px;
-    list-style: none;
-    color: var(--muted);
-    font-weight: 500;
-  }
-  .smartscreen-help summary::-webkit-details-marker { display: none; }
-  .smartscreen-help summary::before {
-    content: "▸  ";
-    color: var(--accent);
-    font-weight: 700;
-  }
-  .smartscreen-help[open] summary::before { content: "▾  "; }
-  .smartscreen-help summary:hover { color: var(--fg); }
-  .smartscreen-help .body { padding: 0 16px 14px 16px; line-height: 1.55; }
-  .smartscreen-help .body p { margin: 6px 0; }
-  .smartscreen-help code {
-    background: var(--card); padding: 1px 6px; border-radius: 4px;
-    color: var(--fg); font-size: 12px;
-  }
-
-  .arch-note {
-    margin: 24px auto 0; max-width: 620px;
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 14px; padding: 16px 20px;
-    font-size: 14px; color: var(--muted);
-    display: flex; gap: 12px; align-items: flex-start;
-  }
-  .arch-note .badge {
-    flex-shrink: 0; font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
-    text-transform: uppercase; color: var(--accent);
-    border: 1px solid var(--accent); border-radius: 6px;
-    padding: 3px 7px; margin-top: 1px;
-  }
-  .arch-note code { background: var(--bg-soft); padding: 1px 6px; border-radius: 5px; color: var(--fg); font-size: 13px; }
-
   section.features { padding: 64px 0 24px; }
   section.features h2 {
     text-align: center; font-size: 13px; letter-spacing: 0.12em;
@@ -234,29 +190,6 @@
         <span><strong>Windows</strong>: Windows 10/11 · x64 · .exe installer</span>
       </div>
 
-      <details class="smartscreen-help" id="winHelp">
-        <summary>Windows: what to do if SmartScreen warns "Unknown publisher"</summary>
-        <div class="body">
-          <p>The Windows installer is currently <strong>not Authenticode-signed</strong>
-             (we're working on it). On first launch, Windows may show
-             <em>"Windows protected your PC"</em>.</p>
-          <p>Click <code>More info</code>, then <code>Run anyway</code>. After the
-             install completes, subsequent launches don't trigger this warning.</p>
-          <p>If your IT department enforces signed-only software via AppLocker
-             or WDAC, you may not be able to install this build — let your team
-             know and we'll prioritise code signing.</p>
-        </div>
-      </details>
-
-      <div class="arch-note" id="archNote">
-        <span class="badge">Compatibility</span>
-        <div>
-          <strong>Windows 10 / 11 · x64</strong> — runs on any modern Windows PC.<br>
-          <strong>macOS 12+ · Apple Silicon only</strong> (M1, M2, M3, M4…). Intel-based
-          Macs are not supported yet. On a Mac and unsure which chip you have? Apple menu
-          &rarr; <code>About This Mac</code> &rarr; look for &ldquo;Apple M&hellip;&rdquo; under Chip.
-        </div>
-      </div>
     </main>
 
     <section class="features">
