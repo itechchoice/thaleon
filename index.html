@@ -248,12 +248,13 @@
         </div>
       </details>
 
-      <div class="arch-note" id="macArchNote">
-        <span class="badge">Mac note</span>
+      <div class="arch-note" id="archNote">
+        <span class="badge">Compatibility</span>
         <div>
-          The Mac build runs on <strong>Apple Silicon</strong> only (M1, M2, M3, M4…).
-          Intel-based Macs are not supported yet. Not sure which you have? Click the Apple
-          menu &rarr; <code>About This Mac</code> and look for &ldquo;Apple M&hellip;&rdquo; under Chip.
+          <strong>Windows 10 / 11 · x64</strong> — runs on any modern Windows PC.<br>
+          <strong>macOS 12+ · Apple Silicon only</strong> (M1, M2, M3, M4…). Intel-based
+          Macs are not supported yet. On a Mac and unsure which chip you have? Apple menu
+          &rarr; <code>About This Mac</code> &rarr; look for &ldquo;Apple M&hellip;&rdquo; under Chip.
         </div>
       </div>
     </main>
@@ -307,10 +308,17 @@
 
   <script>
     // Light-touch platform detection — promote the matching button to primary.
-    // Also hide platform-specific help blocks when they aren't relevant.
+    // We INTENTIONALLY do NOT hide the compatibility / SmartScreen blocks based
+    // on UA. Two reasons:
+    //   1. UA can lie, be missing, or come from a coworker's machine while the
+    //      user is downloading for a different OS — and a customer mis-reading
+    //      "Mac note: only on Apple Silicon" as "this product only runs on Mac"
+    //      is exactly the feedback that got us here.
+    //   2. Both blocks are short and useful to everyone (Windows users may
+    //      glance at the Mac requirement before recommending to a colleague,
+    //      and Mac users skimming the Windows install steps is harmless).
     (function () {
       var ua = (navigator.userAgent || '').toLowerCase();
-      var isMac = /macintosh|mac os x/.test(ua);
       var isWin = /windows nt/.test(ua);
       var macBtn = document.querySelector('[data-os="mac"]');
       var winBtn = document.querySelector('[data-os="win"]');
@@ -318,12 +326,6 @@
         winBtn.classList.remove('secondary'); winBtn.classList.add('primary');
         macBtn.classList.remove('primary');   macBtn.classList.add('secondary');
       }
-      // Hide blocks that don't apply (a Mac visitor doesn't need SmartScreen help;
-      // a Windows visitor doesn't need the Apple Silicon note).
-      var winHelp = document.getElementById('winHelp');
-      var macNote = document.getElementById('macArchNote');
-      if (isWin && macNote) macNote.style.display = 'none';
-      if (isMac && winHelp) winHelp.style.display = 'none';
     })();
   </script>
 </body>
